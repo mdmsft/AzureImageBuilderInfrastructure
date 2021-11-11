@@ -9,17 +9,12 @@ variables:
 pool: Windows
 
 steps:
-- task: AzureResourceManagerTemplateDeployment@3
+- task: AzureCLI@2
   inputs:
-    deploymentScope: 'Resource Group'
-    azureResourceManagerConnection: 'TIMEmSYSTEM'
-    subscriptionId: '03f5c3d1-5c84-47c3-a985-9a0dfacb9f06'
-    action: 'Create Or Update Resource Group'
-    resourceGroupName: '$(resourceGroupName)'
-    location: 'West Europe'
-    templateLocation: 'Linked artifact'
-    csmFile: 'main.bicep'
-    deploymentMode: 'Incremental'
+    azureSubscription: 'TIMEmSYSTEM'
+    scriptType: 'pscore'
+    scriptLocation: 'inlineScript'
+    inlineScript: 'deployment group create -g $(resourceGroupName) -f main.bicep'
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
