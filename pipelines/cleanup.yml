@@ -9,11 +9,15 @@ variables:
 pool: Windows
 
 steps:
+- task: PowerShell@2
+  inputs:
+    targetType: inline
+    script: 'Write-Host "Cleanup"'
 # - task: PowerShell@2
 #   inputs:
 #     targetType: 'inline'
 #     script: 'Install-Module -name Az.ImageBuilder -Force -Scope CurrentUser'
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: 'Remove-AzImageBuilderTemplate -ResourceGroupName $(resourceGroupName) -ImageTemplateName $(imageTemplateName) -NoWait'
+# - task: PowerShell@2
+#   inputs:
+#     targetType: 'inline'
+#     script: 'Remove-AzImageBuilderTemplate -ResourceGroupName $(resourceGroupName) -ImageTemplateName $(imageTemplateName) -NoWait'
